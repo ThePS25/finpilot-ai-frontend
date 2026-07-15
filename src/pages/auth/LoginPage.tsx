@@ -7,6 +7,7 @@ import { authApi } from '@/api/auth.api';
 import { useAuthStore } from '@/store';
 import { Button, Input } from '@/components/ui';
 import { getErrorMessage } from '@/utils/format';
+import { tokenStorage } from '@/utils/tokenStorage';
 
 const schema = z.object({
   email: z.string().email('Invalid email'),
@@ -40,6 +41,7 @@ export function LoginPage() {
       }
 
       if (payload.user) {
+        tokenStorage.setTokens(payload.accessToken, payload.refreshToken);
         setUser(payload.user);
         navigate('/dashboard');
       }
@@ -55,6 +57,7 @@ export function LoginPage() {
       const res = await authApi.login({ ...credentials, totpCode });
       const payload = res.data.data;
       if (payload.user) {
+        tokenStorage.setTokens(payload.accessToken, payload.refreshToken);
         setUser(payload.user);
         navigate('/dashboard');
       }

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import type { User, Profile } from '@/types';
 import { authApi } from '@/api/auth.api';
+import { tokenStorage } from '@/utils/tokenStorage';
 
 interface AuthState {
   user: User | null;
@@ -23,14 +24,16 @@ export const useAuthStore = create<AuthState>((set) => ({
       const { data } = await authApi.getMe();
       set({ user: data.data.user, isAuthenticated: true, isLoading: false });
     } catch {
+      tokenStorage.clear();
       set({ user: null, isAuthenticated: false, isLoading: false });
     }
   },
 
   logout: async () => {
     try {
-      await authApi.logout();
+      await authApi.logout({ refreshToken: tokenStorage.getRefreshToken() || undefined });
     } finally {
+      tokenStorage.clear();
       set({ user: null, isAuthenticated: false });
     }
   },

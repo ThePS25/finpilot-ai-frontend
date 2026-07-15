@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { tokenStorage } from '@/utils/tokenStorage';
 
 const API_URL = import.meta.env.VITE_API_URL || '/api/v1';
 
@@ -6,6 +7,14 @@ export const apiClient = axios.create({
   baseURL: API_URL,
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
+});
+
+apiClient.interceptors.request.use((config) => {
+  const token = tokenStorage.getAccessToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 let isRefreshing = false;
@@ -22,7 +31,10 @@ apiClient.interceptors.response.use(
     const originalRequest = error.config;
 
     if (error.response?.status === 401 && !originalRequest._retry) {
-      if (originalRequest.url?.includes('/auth/refresh') || originalRequest.url?.includes('/auth/login')) {
+      if (
+        originalRequest.url?.includes('/auth/refresh') ||
+        originalRequest.url?.includes('/auth/login')
+      ) {
         return Promise.reject(error);
       }
 
@@ -36,10 +48,16 @@ apiClient.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        await apiClient.post('/auth/refresh');
+        const refreshToken = tokenStorage.getRefreshToken();
+        const { data } = await apiClient.post('/auth/refresh', refreshToken ? { refreshToken } : {});
+        const tokens = data?.data;
+        if (tokens?.accessToken) {
+          tokenStorage.setTokens(tokens.accessToken, tokens.refreshToken ?? refreshToken);
+        }
         processQueue();
         return apiClient(originalRequest);
       } catch (refreshError) {
+        tokenStorage.clear();
         processQueue(refreshError);
         return Promise.reject(refreshError);
       } finally {
