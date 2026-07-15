@@ -1,0 +1,49 @@
+@use '../../styles/variables' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  @include flex-center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  @include card;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: $text-muted;
+  line-height: 1;
+  padding: 4px;
+
+  &:hover { color: $text; }
+}
+
+.footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}

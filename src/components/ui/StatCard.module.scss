@@ -1,0 +1,43 @@
+@use '../../styles/variables' as *;
+
+.stat {
+  @include card;
+  padding: 20px 24px;
+}
+
+.label {
+  font-size: 13px;
+  color: $text-muted;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.value {
+  font-size: 28px;
+  font-weight: 700;
+  color: $text;
+  letter-spacing: -0.5px;
+}
+
+.change {
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 600;
+
+  &.up { color: $secondary; }
+  &.down { color: $danger; }
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  @include flex-center;
+  font-size: 18px;
+  margin-bottom: 12px;
+
+  &.blue { background: rgba($primary, 0.1); color: $primary; }
+  &.green { background: rgba($secondary, 0.1); color: $secondary; }
+  &.orange { background: rgba($warning, 0.1); color: $warning; }
+  &.red { background: rgba($danger, 0.1); color: $danger; }
+}

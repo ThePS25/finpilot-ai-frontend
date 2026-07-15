@@ -1,0 +1,58 @@
+@use '../../styles/variables' as *;
+
+.page {
+  max-width: 800px;
+}
+
+.summary {
+  font-size: 16px;
+  line-height: 1.6;
+  color: $text;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: rgba($primary, 0.04);
+  border-radius: $radius-sm;
+  border-left: 3px solid $primary;
+}
+
+.insights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insight {
+  padding: 16px 20px;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  border-left: 3px solid $border;
+
+  &.up { border-left-color: $secondary; }
+  &.down { border-left-color: $danger; }
+  &.stable { border-left-color: $warning; }
+
+  h4 { font-size: 15px; margin: 6px 0 4px; }
+  p { font-size: 14px; color: $text-muted; }
+}
+
+.insightHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $text-muted;
+  letter-spacing: 0.5px;
+}
+
+.change {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.up .change { color: $secondary; }
+.down .change { color: $danger; }

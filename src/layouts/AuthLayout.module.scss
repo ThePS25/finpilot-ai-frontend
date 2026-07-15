@@ -1,0 +1,43 @@
+@use '../styles/variables' as *;
+
+.layout {
+  min-height: 100vh;
+  @include flex-center;
+  background: linear-gradient(135deg, #EFF6FF 0%, $background 50%, #ECFDF5 100%);
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 32px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: $primary;
+    letter-spacing: -0.5px;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+}
+
+.card {
+  @include card;
+  padding: 32px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: $text-muted;
+}

@@ -1,0 +1,90 @@
+@use '../../styles/variables' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 480px) { grid-template-columns: 1fr; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @media (max-width: 768px) { grid-template-columns: 1fr; }
+}
+
+.investmentStats {
+  display: flex;
+  gap: 32px;
+  padding: 12px 0;
+
+  span { display: block; font-size: 13px; color: $text-muted; margin-bottom: 4px; }
+  strong { font-size: 22px; }
+}
+
+.healthScore {
+  text-align: center;
+  padding: 20px;
+
+  p { color: $text-muted; font-size: 14px; margin-top: 12px; }
+}
+
+.scoreCircle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $primary, $secondary);
+  color: $white;
+  font-size: 32px;
+  font-weight: 800;
+  @include flex-center;
+  margin: 0 auto;
+}
+
+.goals {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.goalItem {
+  padding: 4px 0;
+}
+
+.goalHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.progressBar {
+  height: 8px;
+  background: $border;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, $primary, $secondary);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.goalMeta {
+  font-size: 12px;
+  color: $text-muted;
+  margin-top: 4px;
+}

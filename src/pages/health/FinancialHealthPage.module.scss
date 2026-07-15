@@ -1,0 +1,68 @@
+@use '../../styles/variables' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.scoreSection {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  padding: 20px 0;
+
+  @media (max-width: 640px) { flex-direction: column; }
+}
+
+.scoreCircle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $primary, $secondary);
+  color: $white;
+  @include flex-center;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  span { font-size: 48px; font-weight: 800; line-height: 1; }
+  small { font-size: 14px; opacity: 0.8; }
+}
+
+.reasons {
+  h4 { font-size: 16px; margin-bottom: 12px; }
+  ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  li { font-size: 14px; color: $text; padding-left: 20px; position: relative;
+    &::before { content: '•'; position: absolute; left: 0; color: $primary; font-weight: bold; }
+  }
+}
+
+.components {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+}
+
+.compScore {
+  font-size: 28px;
+  font-weight: 700;
+  color: $primary;
+  margin-bottom: 8px;
+}
+
+.compBar {
+  height: 6px;
+  background: $border;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+
+  div { height: 100%; background: linear-gradient(90deg, $primary, $secondary); border-radius: 3px; }
+}
+
+.compValue {
+  font-size: 13px;
+  color: $text-muted;
+}

@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+
+  button { grid-column: 1 / -1; justify-self: start; }
+}
+
+.goals {
+  margin-top: 24px;
+
+  h4 { font-size: 14px; margin-bottom: 12px; }
+}
+
+.goalRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid $border;
+  font-size: 14px;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.historyItem {
+  padding: 12px 16px;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  justify-content: space-between;
+
+  &:hover { border-color: $primary; background: rgba($primary, 0.02); }
+
+  span { color: $text-muted; font-size: 13px; }
+}

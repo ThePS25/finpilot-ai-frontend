@@ -1,0 +1,77 @@
+@use '../../styles/variables' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  background: $primary;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background: darken($primary, 8%);
+  }
+}
+
+.secondary {
+  background: $secondary;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background: darken($secondary, 8%);
+  }
+}
+
+.outline {
+  background: transparent;
+  color: $primary;
+  border: 1.5px solid $primary;
+
+  &:hover:not(:disabled) {
+    background: rgba($primary, 0.05);
+  }
+}
+
+.ghost {
+  background: transparent;
+  color: $text-muted;
+
+  &:hover:not(:disabled) {
+    background: $background;
+    color: $text;
+  }
+}
+
+.danger {
+  background: $danger;
+  color: $white;
+}
+
+.sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.lg {
+  padding: 14px 28px;
+  font-size: 16px;
+}
+
+.full {
+  width: 100%;
+}

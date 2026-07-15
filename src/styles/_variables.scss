@@ -1,0 +1,27 @@
+$primary: #2563EB;
+$secondary: #10B981;
+$background: #F8FAFC;
+$text: #0F172A;
+$text-muted: #64748B;
+$border: #E2E8F0;
+$danger: #EF4444;
+$warning: #F59E0B;
+$white: #FFFFFF;
+$shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+$shadow-lg: 0 4px 24px rgba(15, 23, 42, 0.1);
+$radius: 12px;
+$radius-sm: 8px;
+$sidebar-width: 260px;
+
+@mixin card {
+  background: $white;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  border: 1px solid $border;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
